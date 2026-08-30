@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>VNC</title>
+    <style>
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #000;
+        font: 13px/1.4 system-ui, sans-serif;
+      }
+
+      #app {
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      #header {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 14px;
+        color: #eee;
+        background: #1a1a1a;
+        border-bottom: 1px solid #333;
+      }
+
+      #header .left {
+        display: inline-flex;
+        align-items: center;
+        gap: 12px;
+        min-width: 0;
+      }
+
+      #header .title {
+        font-weight: 600;
+        letter-spacing: 0.02em;
+      }
+
+      #home {
+        color: #ddd;
+        text-decoration: none;
+        padding: 3px 10px;
+        border: 1px solid #444;
+        border-radius: 4px;
+        background: #262626;
+      }
+
+      #home:hover {
+        background: #333;
+        border-color: #555;
+      }
+
+      #status {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        color: #ddd;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      #status::before {
+        content: '';
+        width: 8px;
+        height: 8px;
+        border-radius: 50%;
+        background: currentColor;
+        flex: 0 0 auto;
+      }
+
+      #status[data-state='connecting'] {
+        color: #e0c56c;
+      }
+
+      #status[data-state='connected'] {
+        color: #7dd47d;
+      }
+
+      #status[data-state='disconnected'] {
+        color: #e06c6c;
+      }
+
+      #screen {
+        flex: 1 1 auto;
+        overflow: hidden;
+        background: #000;
+      }
+
+      /*
+       * noVNC drives the pointer from the server's Cursor pseudo-encoding and
+       * sets `cursor: none` on the canvas when the server sends no cursor image
+       * (e.g. a screencast that bakes the cursor into the frame). Keep the normal
+       * system pointer visible instead of letting it vanish.
+       */
+      #screen,
+      #screen * {
+        cursor: default !important;
+      }
+
+      #footer {
+        flex: 0 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 6px 14px;
+        color: #9a9a9a;
+        background: #1a1a1a;
+        border-top: 1px solid #333;
+        font-size: 12px;
+      }
+
+      #footer a {
+        color: #9a9a9a;
+        text-decoration: none;
+      }
+
+      #footer a:hover {
+        color: #ddd;
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="app">
+      <header id="header">
+        <span class="left">
+          <a id="home" href="/" hidden>Home</a>
+          <span class="title">VNC Screen</span>
+        </span>
+        <span id="status" data-state="connecting">Starting…</span>
+      </header>
+      <div id="screen"></div>
+      <footer id="footer">
+        <span class="copyright"
+          >Copyright © 2026 · MIT ·
+          <a id="gh-link" target="_blank" rel="noopener noreferrer">GitHub</a></span
+        >
+      </footer>
+    </div>
+  </body>
+</html>
