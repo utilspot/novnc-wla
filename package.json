@@ -1,6 +1,6 @@
 {
   "name": "novnc-wla",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "description": "Web client that displays a VNC connection screen",
   "homepage": "https://github.com/utilspot/novnc-wla",

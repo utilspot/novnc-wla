@@ -58,6 +58,7 @@ function connect(): void {
 
   rfb.addEventListener('connect', () => {
     setStatus('connected', 'Connected');
+    rfb?.focus();
   });
 
   rfb.addEventListener('disconnect', (event) => {
