@@ -1,6 +1,6 @@
 {
   "name": "novnc-wla",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "license": "MIT",
   "description": "Web client that displays a VNC connection screen",
   "homepage": "https://github.com/utilspot/novnc-wla",
@@ -13,12 +13,13 @@
     "build:dev": "webpack --mode development",
     "start": "webpack serve --mode development",
     "bitmake": "npx bitmake build",
+    "clean": "node tools/clean.mjs",
     "server": "./build/package/bin/novnc_server",
     "typecheck": "tsc --noEmit"
   },
   "devDependencies": {
     "@novnc/novnc": "^1.7.0",
-    "bitmake": "^0.0.1-develop.15",
+    "bitmake": "^0.0.1-develop.17",
     "html-webpack-plugin": "^5.6.3",
     "ts-loader": "^9.5.2",
     "typescript": "^5.7.3",
